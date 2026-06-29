@@ -579,7 +579,7 @@ export const timelineStages: TimelineStage[] = [
         description:
           '新加坡籍货轮"Ever Lovely"在霍尔木兹海峡附近遭无人机袭击，美方归咎伊朗。美军中央司令部于6月26日对伊朗导弹与无人机储存点、雷达站实施"有力反击"空袭。巴林外交部随后指责伊朗于6月27日凌晨对其领土发动无人机袭击。英国海事贸易行动机构（UKMTO）已将海峡威胁等级从"中等"上调至"严重"。',
         image: [
-          { src: '/images/6月27日阶段六6.png', alt: 'Ever Lovely货轮遇袭', caption: '"Ever Lovely"货轮遇袭' },
+          { src: '/images/6月25-27日货轮遇袭第六阶段.jpg', alt: 'Ever Lovely货轮遇袭', caption: '"Ever Lovely"货轮遇袭' },
         ],
       },
     ],
