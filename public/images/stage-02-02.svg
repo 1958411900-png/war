@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="ra9" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#280709" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur7"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="375" cy="160" rx="250" ry="180" fill="url(#ra9)" filter="url(#blur7)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="125" x2="750" y2="125"/>
+    <line x1="0" y1="250" x2="750" y2="250"/>
+    <line x1="0" y1="375" x2="750" y2="375"/>
+    <line x1="250" y1="0" x2="250" y2="500"/>
+    <line x1="500" y1="0" x2="500" y2="500"/>
+  </g>
+  <!-- Evacuation arrow -->
+  <g transform="translate(375,200)">
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#650C12" stroke-width="1" stroke-opacity="0.4"/>
+    <polygon points="100,0 90,-6 90,6" fill="#B71019" fill-opacity="0.6"/>
+    <polygon points="-100,0 -90,-6 -90,6" fill="#B71019" fill-opacity="0.6"/>
+    <text x="0" y="-20" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="12" font-weight="700" letter-spacing="3">EVACUATION</text>
+    <text x="0" y="30" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">6ύ¤»δ · 3φ…ήνΡ</text>
+  </g>
+  <text x="375" y="340" text-anchor="middle" fill="#F2EEEE" font-family="Noto Sans SC, sans-serif" font-size="14" font-weight="500" letter-spacing="2">33ε</text>
+  <text x="375" y="370" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">-6ύ · Ή^ΕΊX¤»</text>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">ώG…eE</text>
+</svg>

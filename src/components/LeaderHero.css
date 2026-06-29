@@ -1,0 +1,409 @@
+/* ============================================================
+   LeaderHero - 横向三槽位轮播
+   ============================================================ */
+
+/* ── 主容器 ── */
+.leader-hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  overflow: hidden;
+  background: #050505;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* ── 照片轨道 ── */
+.lh-track {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* ── 单个槽位 ── */
+.lh-slot {
+  flex-shrink: 0;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 侧边（非中心）槽位：内边缘高斯模糊，过渡更平滑 */
+.lh-slot--blur {
+  overflow: visible;
+}
+
+.lh-slot--blur .lh-img-wrap {
+  overflow: hidden;
+}
+
+.lh-slot--blur .lh-img {
+  filter: blur(6px);
+}
+
+/* 左槽：右侧边缘渐隐 */
+.lh-slot--blur:first-child .lh-img-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 70%;
+  background: linear-gradient(to right, transparent 0%, rgba(5, 5, 5, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 右槽：左侧边缘渐隐 */
+.lh-slot--blur:last-child .lh-img-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70%;
+  background: linear-gradient(to left, transparent 0%, rgba(5, 5, 5, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── 图片容器 ── */
+.lh-img-wrap {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  will-change: transform, opacity;
+}
+
+/* ── 照片 ── */
+.lh-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+}
+
+/* ── 暗色遮罩 ── */
+.lh-overlay {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* ── 侧边竖排国家名 ── */
+.lh-side-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: rgba(242, 238, 238, 0.35);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── 中央红色底边线 ── */
+.lh-center-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent-red, #E01B24);
+  z-index: 5;
+}
+
+/* ── 列间分隔线 ── */
+.lh-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(183, 16, 25, 0.30);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.lh-divider--1 { left: 16.67%; }
+.lh-divider--2 { right: 16.67%; }
+
+/* ── 底部渐变遮罩 ── */
+.lh-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 5, 0.98) 0%,
+    rgba(5, 5, 5, 0.80) 25%,
+    rgba(5, 5, 5, 0.35) 55%,
+    rgba(5, 5, 5, 0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* ── 人物介绍：居中浮在照片上 ── */
+.lh-info {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  z-index: 15;
+  pointer-events: none;
+  width: 100%;
+  padding: 0 24px;
+}
+
+.lh-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ── 人物介绍：国家+职位 ── */
+.lh-role {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(242, 238, 238, 0.60);
+  margin-bottom: 6px;
+}
+
+/* ── 人物介绍：全名大写 ── */
+.lh-name {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--color-text-primary, #F2EEEE);
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* ── 标题区（底部，上移）── */
+.lh-header {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  padding: 0 24px calc(var(--safe-area-bottom, 0px) + 12px);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 标题行：左侧文字 + 右侧进度计数 */
+.lh-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.lh-header-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lh-pretitle {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(183, 16, 25, 0.55);
+  margin-bottom: 4px;
+}
+
+.lh-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--color-text-primary, #F2EEEE);
+  margin: 0 0 2px;
+  line-height: 1.1;
+}
+
+.lh-subtitle {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(242, 238, 238, 0.70);
+  margin: 0 0 1px;
+}
+
+.lh-subtitle-en {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgba(242, 238, 238, 0.50);
+  margin: 0 0 10px;
+}
+
+.lh-title-divider {
+  width: 28px;
+  height: 1px;
+  background: rgba(183, 16, 25, 0.50);
+  margin-bottom: 10px;
+}
+
+.lh-period {
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
+  color: rgba(242, 238, 238, 0.60);
+  font-family: var(--font-mono, monospace);
+  margin: 0 0 8px;
+}
+
+.lh-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(242, 238, 238, 0.65);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── 进度计数：竖排显示在标题右侧 ── */
+.lh-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.lh-progress-current {
+  font-family: var(--font-mono, monospace);
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: var(--color-accent-red, #E01B24);
+  line-height: 1;
+  display: block;
+}
+
+.lh-progress-sep {
+  width: 12px;
+  height: 1px;
+  background: rgba(183, 16, 25, 0.40);
+}
+
+.lh-progress-total {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgba(242, 238, 238, 0.45);
+  display: block;
+}
+
+/* ── 进入报道按钮 ── */
+.lh-enter-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 220px;
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid rgba(224, 27, 36, 0.60);
+  color: var(--color-text-primary, #F2EEEE);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lh-enter-btn:hover,
+.lh-enter-btn:focus-visible {
+  background: rgba(224, 27, 36, 0.12);
+  border-color: rgba(224, 27, 36, 0.85);
+  outline: none;
+}
+
+.lh-enter-btn:active {
+  background: rgba(224, 27, 36, 0.20);
+  transform: scale(0.98);
+}
+
+.lh-enter-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.lh-enter-btn:hover .lh-enter-arrow {
+  transform: translateX(2px);
+}
+
+/* ── 下滑提示：移至右下角 ── */
+.lh-scroll-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 24px;
+  left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  animation: lh-fadeIn 0.6s ease forwards 2.5s;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.lh-scroll-text {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: rgba(242, 238, 238, 0.55);
+}
+
+.lh-scroll-line {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, rgba(183, 16, 25, 0.60), transparent);
+  animation: lh-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lh-fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes lh-pulse {
+  0%, 100% { opacity: 0.5; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.15); }
+}
+
+/* ── 桌面端宽度限制 ── */
+@media (min-width: 431px) {
+  .h5-app {
+    display: flex;
+    justify-content: center;
+  }
+
+  .leader-hero {
+    max-width: 430px;
+  }
+}

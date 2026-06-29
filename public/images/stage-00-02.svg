@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="redAura3" cx="60%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#650C12" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur2"><feGaussianBlur stdDeviation="25"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="450" cy="180" rx="300" ry="220" fill="url(#redAura3)" filter="url(#blur2)"/>
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="125" x2="750" y2="125"/>
+    <line x1="0" y1="250" x2="750" y2="250"/>
+    <line x1="0" y1="375" x2="750" y2="375"/>
+    <line x1="187" y1="0" x2="187" y2="500"/>
+    <line x1="375" y1="0" x2="375" y2="500"/>
+    <line x1="562" y1="0" x2="562" y2="500"/>
+  </g>
+  <!-- Two figures silhouette -->
+  <g transform="translate(375,220)" fill="#100506">
+    <rect x="-80" y="-60" width="160" height="160" rx="2"/>
+    <rect x="-40" y="-30" width="80" height="80" rx="2"/>
+    <rect x="-60" y="20" width="120" height="40" rx="2"/>
+  </g>
+  <!-- Connection line -->
+  <line x1="300" y1="250" x2="450" y2="250" stroke="#650C12" stroke-width="1" stroke-dasharray="4,4" stroke-opacity="0.5"/>
+  <text x="375" y="235" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="12" font-weight="300" letter-spacing="2">OMAN MEDIATION</text>
+  <text x="375" y="265" text-anchor="middle" fill="#650C12" font-family="Noto Sans SC, sans-serif" font-size="11" letter-spacing="1">Ž
+ô¥$S</text>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">þG…eE</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="ra4" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#B71019" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#280709" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ra5" cx="30%" cy="60%" r="50%">
+      <stop offset="0%" stop-color="#650C12" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur3"><feGaussianBlur stdDeviation="35"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="375" cy="250" rx="320" ry="220" fill="url(#ra4)" filter="url(#blur3)"/>
+  <ellipse cx="150" cy="300" rx="200" ry="180" fill="url(#ra5)" filter="url(#blur3)"/>
+  <g stroke="rgba(255,255,255,0.07)" stroke-width="1">
+    <line x1="0" y1="166" x2="750" y2="166"/>
+    <line x1="0" y1="333" x2="750" y2="333"/>
+    <line x1="250" y1="0" x2="250" y2="500"/>
+    <line x1="500" y1="0" x2="500" y2="500"/>
+  </g>
+  <g transform="translate(375,200)">
+    <rect x="-120" y="-80" width="240" height="160" rx="4" fill="none" stroke="#650C12" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="0" y="-20" text-anchor="middle" fill="#F2EEEE" font-family="Noto Sans SC, sans-serif" font-size="16" font-weight="700" letter-spacing="4">2026.02.28</text>
+    <line x1="-100" y1="0" x2="100" y2="0" stroke="#B71019" stroke-width="1" stroke-opacity="0.5"/>
+    <text x="0" y="30" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="13" font-weight="700" letter-spacing="3">Tz­</text>
+    <text x="0" y="55" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300" letter-spacing="1">OPERATION EPIC FURY</text>
+  </g>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">þG…eE</text>
+</svg>

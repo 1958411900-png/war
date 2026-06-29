@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="ra20" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#650C12" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur17"><feGaussianBlur stdDeviation="25"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="375" cy="250" rx="300" ry="200" fill="url(#ra20)" filter="url(#blur17)"/>
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="125" x2="750" y2="125"/>
+    <line x1="0" y1="250" x2="750" y2="250"/>
+    <line x1="0" y1="375" x2="750" y2="375"/>
+  </g>
+  <g transform="translate(375,200)">
+    <rect x="-130" y="-60" width="260" height="120" rx="2" fill="#100506" stroke="#650C12" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="0" y="-20" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="700" letter-spacing="2">USS TRUXTUN</text>
+    <text x="0" y="0" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="700" letter-spacing="2">USS RAFAEL PERALTA</text>
+    <text x="0" y="20" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="700" letter-spacing="2">USS MASON</text>
+    <line x1="-110" y1="35" x2="110" y2="35" stroke="#650C12" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="0" y="58" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">57å · Çƒwámü9àº:ëG­û</text>
+  </g>
+  <text x="375" y="380" text-anchor="middle" fill="#650C12" font-family="Noto Sans SC, sans-serif" font-size="11" letter-spacing="1">Ž¹sz­í¾?ô¯ŒÖÀÆ›ú0</text>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">þG…eE</text>
+</svg>

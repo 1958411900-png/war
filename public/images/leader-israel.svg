@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" width="200" height="280">
+  <defs>
+    <radialGradient id="bg_netanyahu" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4a5a8a" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#1a1a3a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="noise_netanyahu">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="multiply" result="noisy"/>
+      <feComposite in="noisy" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <clipPath id="portrait_clip_netanyahu">
+      <rect x="0" y="0" width="200" height="280" rx="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="280" fill="#050505" rx="8"/>
+  <rect width="200" height="280" fill="url(#bg_netanyahu)" rx="8" filter="url(#noise_netanyahu)" opacity="0.5"/>
+
+  <!-- Grid lines -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="0" y1="70" x2="200" y2="70"/>
+    <line x1="0" y1="140" x2="200" y2="140"/>
+    <line x1="0" y1="210" x2="200" y2="210"/>
+    <line x1="50" y1="0" x2="50" y2="280"/>
+    <line x1="100" y1="0" x2="100" y2="280"/>
+    <line x1="150" y1="0" x2="150" y2="280"/>
+  </g>
+
+  <!-- Silhouette figure -->
+  <g clip-path="url(#portrait_clip_netanyahu)" opacity="0.7">
+    <!-- Head silhouette -->
+    <ellipse cx="100" cy="75" rx="38" ry="42" fill="#1a1a3a"/>
+    <!-- Neck -->
+    <rect x="88" y="110" width="24" height="25" fill="#1a1a3a"/>
+    <!-- Shoulders -->
+    <ellipse cx="100" cy="155" rx="70" ry="55" fill="#1a1a3a"/>
+    <!-- Collar detail -->
+    <path d="M 75 145 Q 100 165 125 145" fill="none" stroke="#4a5a8a" stroke-width="1" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Red accent line -->
+  <line x1="40" y1="195" x2="160" y2="195" stroke="#4a5a8a" stroke-width="1" stroke-opacity="0.5"/>
+
+  <!-- Text info -->
+  <text x="100" y="218" text-anchor="middle" fill="#4a5a8a" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="700" letter-spacing="3" opacity="0.8">NETANYAHU</text>
+  <text x="100" y="240" text-anchor="middle" fill="rgba(242,238,238,0.5)" font-family="Noto Sans SC, sans-serif" font-size="10" font-weight="300" letter-spacing="2">以色列总理</text>
+
+  <!-- Corner marks -->
+  <g stroke="#4a5a8a" stroke-width="1" stroke-opacity="0.4">
+    <path d="M 8 8 L 8 22 M 8 8 L 22 8" fill="none"/>
+    <path d="M 192 8 L 192 22 M 192 8 L 178 8" fill="none"/>
+    <path d="M 8 272 L 8 258 M 8 272 L 22 272" fill="none"/>
+    <path d="M 192 272 L 192 258 M 192 272 L 178 272" fill="none"/>
+  </g>
+</svg>

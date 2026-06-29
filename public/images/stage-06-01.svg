@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="ra21" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#B71019" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur18"><feGaussianBlur stdDeviation="30"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="375" cy="250" rx="320" ry="220" fill="url(#ra21)" filter="url(#blur18)"/>
+  <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+    <line x1="0" y1="125" x2="750" y2="125"/>
+    <line x1="0" y1="250" x2="750" y2="250"/>
+    <line x1="0" y1="375" x2="750" y2="375"/>
+  </g>
+  <g transform="translate(375,200)">
+    <rect x="-140" y="-80" width="280" height="160" rx="3" fill="#100506" stroke="#650C12" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="0" y="-35" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="13" font-weight="700" letter-spacing="3">ISLAMABAD MEMO</text>
+    <line x1="-120" y1="-10" x2="120" y2="-10" stroke="#650C12" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="0" y="20" text-anchor="middle" fill="#F2EEEE" font-family="Noto Sans SC, sans-serif" font-size="14" font-weight="700">
+ฏp!ุU</text>
+    <text x="0" y="50" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">617ๅ ท ~r</text>
+    <text x="0" y="72" text-anchor="middle" fill="#650C12" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">60)$—ใ ท 3000ฟCอ๚๚ั</text>
+  </g>
+  <text x="375" y="420" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">yniýภ๚~r ท ๔๚ฏf;"ฬ+\:ในq~W</text>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">þG…eE</text>
+</svg>

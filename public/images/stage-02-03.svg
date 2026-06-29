@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 500" width="750" height="500">
+  <defs>
+    <radialGradient id="ra10" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#280709" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur8"><feGaussianBlur stdDeviation="20"/></filter>
+  </defs>
+  <rect width="750" height="500" fill="#050505"/>
+  <ellipse cx="375" cy="120" rx="280" ry="180" fill="url(#ra10)" filter="url(#blur8)"/>
+  <!-- Rain drops pattern -->
+  <g fill="#280709" fill-opacity="0.3">
+    <line x1="200" y1="150" x2="190" y2="300" stroke="#280709" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="250" y1="120" x2="240" y2="350" stroke="#280709" stroke-width="1.5" stroke-opacity="0.25"/>
+    <line x1="300" y1="130" x2="290" y2="400" stroke="#280709" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="350" y1="110" x2="340" y2="420" stroke="#280709" stroke-width="1.5" stroke-opacity="0.2"/>
+    <line x1="400" y1="140" x2="390" y2="380" stroke="#280709" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="450" y1="125" x2="440" y2="360" stroke="#280709" stroke-width="1.5" stroke-opacity="0.25"/>
+    <line x1="500" y1="135" x2="490" y2="370" stroke="#280709" stroke-width="2" stroke-opacity="0.3"/>
+    <line x1="550" y1="150" x2="540" y2="350" stroke="#280709" stroke-width="1.5" stroke-opacity="0.2"/>
+  </g>
+  <text x="375" y="220" text-anchor="middle" fill="#F2EEEE" font-family="Noto Sans SC, sans-serif" font-size="15" font-weight="700" letter-spacing="3">38å</text>
+  <text x="375" y="255" text-anchor="middle" fill="#E01B24" font-family="Noto Sans SC, sans-serif" font-size="13" font-weight="700" letter-spacing="2">"Ñè"</text>
+  <text x="375" y="285" text-anchor="middle" fill="#AFA5A5" font-family="Noto Sans SC, sans-serif" font-size="11" font-weight="300">·Ñp¨¹¾½m­ · ¯ƒ~³</text>
+  <text x="375" y="460" text-anchor="middle" fill="rgba(175,165,165,0.4)" font-family="Noto Sans SC, sans-serif" font-size="10" letter-spacing="1">þG…eE</text>
+</svg>
