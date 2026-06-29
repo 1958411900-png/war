@@ -638,9 +638,12 @@ body {
 .stage-nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
+  justify-content: center;
+  padding: 8px 16px;
   gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 /* ?????????+???? */
@@ -690,7 +693,6 @@ body {
 
 /* ??????????????? */
 .nav-btn-center {
-  flex: 1;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -703,7 +705,6 @@ body {
   cursor: pointer;
   transition: background-color var(--transition-fast);
   min-height: 44px;
-  max-width: 320px;
 }
 
 /* Nav-btn-center hover */
