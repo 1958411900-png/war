@@ -630,9 +630,13 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 0 0 var(--safe-area-bottom);
+  padding: 0;
+  padding-bottom: var(--safe-area-bottom);
   background-color: #000;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
 }
 
 .stage-nav-inner {
@@ -643,7 +647,6 @@ body {
   gap: 8px;
   width: 100%;
   box-sizing: border-box;
-  max-width: 100%;
 }
 
 /* ?????????+???? */
