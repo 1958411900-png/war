@@ -2,7 +2,9 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { timelineStages } from './data/timelineData';
 import LeaderHero from './components/LeaderHero';
 import FixedHeader from './components/FixedHeader';
+import BackToCoverButton from './components/BackToCoverButton';
 import StagePanel from './components/StagePanel';
+import NextStageButton from './components/NextStageButton';
 import StageDirectory from './components/StageDirectory';
 import StageNav from './components/StageNav';
 import SourceFooter from './components/SourceFooter';
@@ -35,18 +37,7 @@ export default function App() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  // ─── scroll when currentStageIndex changes ────────────────────────────────
-  // scrollIntoView waits for React to paint the new display:block first,
-  // so offsetTop is correct. The StagePanel's own useEffect handles the scroll.
-  useEffect(() => {
-    if (appPhase !== 'timeline') return;
-    const el = document.getElementById(getStageId(currentStageIndex));
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [currentStageIndex, appPhase]);
-
-  // ─── navigation (state only — scroll is handled by useEffect above) ────────
+  // ─── navigation (pure state, no scroll) ────────────────────────────────────
   const enterTimeline = useCallback(() => {
     setAppPhase('timeline');
     setCurrentStageIndex(0);
@@ -167,25 +158,29 @@ export default function App() {
               onOpenDirectory={() => setShowDirectory(true)}
             />
 
-            <div
-              className="h5-content"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              {CONTENT_STAGES.map((stage, index) => (
-                <StagePanel
-                  key={stage.id}
-                  stage={stage}
-                  index={index}
-                  isActive={currentStageIndex === index}
-                  onOpenDetail={() => handleOpenDetail(index)}
-                  onOpenImage={handleOpenImage}
-                  isLast={index === TOTAL_STAGES - 1}
-                  onGoToNext={goToNextStage}
-                  onGoToSituation={goToSituation}
-                />
-              ))}
+            {/* ── 动态 key 触发 CSS 进入动画 ── */}
+            <div className="h5-content" key={getStageId(currentStageIndex)}>
+              <StagePanel
+                stage={currentStage}
+                index={currentStageIndex}
+                isActive
+                isLast={currentStageIndex === TOTAL_STAGES - 1}
+                onOpenDetail={() => handleOpenDetail(currentStageIndex)}
+                onOpenImage={handleOpenImage}
+              />
             </div>
+
+            {/* ── Fixed "下一阶段" 按钮 ── */}
+            <NextStageButton
+              onGoToNext={goToNextStage}
+              isLast={currentStageIndex === TOTAL_STAGES - 1}
+            />
+
+            {/* ── Fixed "返回封面" 按钮 ── */}
+            <BackToCoverButton
+              onBackToCover={() => setAppPhase('cover')}
+              isVisible={currentStageIndex === TOTAL_STAGES - 1}
+            />
 
             <SourceFooter
               onBackToCover={() => setAppPhase('cover')}
@@ -196,8 +191,6 @@ export default function App() {
               currentIndex={currentStageIndex}
               total={TOTAL_STAGES}
               stageTitle={stageTitle}
-              onPrev={goToPrevStage}
-              onNext={goToNextStage}
               onOpenDirectory={() => setShowDirectory(true)}
             />
 

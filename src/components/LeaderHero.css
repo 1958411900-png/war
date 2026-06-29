@@ -336,6 +336,26 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+/* ── Fixed variant for timeline "下一阶段" button ── */
+.lh-enter-btn--fixed {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 220px;
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.lh-enter-btn--fixed:hover {
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.lh-enter-btn--fixed:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
 .lh-enter-btn:hover,
 .lh-enter-btn:focus-visible {
   background: rgba(224, 27, 36, 0.12);
@@ -406,4 +426,38 @@
   .leader-hero {
     max-width: 430px;
   }
+}
+
+/* ── Fixed "返回封面" button ── */
+.back-to-cover-btn {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  pointer-events: auto;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  padding: 10px 24px;
+  background: rgba(15, 15, 18, 0.88);
+  border: 1px solid rgba(224, 27, 36, 0.5);
+  border-radius: 20px;
+  color: #f2eeee;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.back-to-cover-btn:hover {
+  background: rgba(224, 27, 36, 0.15);
+  border-color: rgba(224, 27, 36, 0.85);
+  transform: translateX(-50%) translateY(-1px);
+}
+
+.back-to-cover-btn:active {
+  transform: translateX(-50%) scale(0.96);
+  background: rgba(224, 27, 36, 0.25);
 }

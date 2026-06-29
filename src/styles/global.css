@@ -873,33 +873,66 @@ body {
 /* Stage Panel */
 .h5-content {
   flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
 }
 
 .stage-panel {
-  display: none;
-  padding: 52px 20px 100px;
-  box-sizing: border-box;
-  padding-left: 20px;
-  padding-right: 20px;
-  overflow-y: auto;
-}
-
-.stage-panel.active {
   display: block;
-  opacity: 1;
-  pointer-events: auto;
-  }
-
-.stage-panel.exit-left {
-  display: none;
+  padding: 52px 20px 140px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  animation: fadeSlideIn 0.4s ease;
 }
 
-.stage-panel.exit-right {
-  display: none;
+/* ── Next Stage Button (fixed, outside stacking context) ── */
+.next-stage-btn {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: rgba(101, 5, 18, 0.85);
+  border: 1px solid rgba(183, 16, 25, 0.6);
+  border-radius: 4px;
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  min-height: 44px;
+  min-width: 140px;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.next-stage-btn:hover {
+  background: rgba(183, 16, 25, 0.9);
+  transform: translateX(-50%) translateY(-1px);
+  box-shadow: 0 6px 20px rgba(183, 16, 25, 0.35);
+}
+
+.next-stage-btn:active,
+.next-stage-btn.next-btn--clicked {
+  background: rgba(224, 27, 36, 1) !important;
+  transform: translateX(-50%) scale(0.97);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* Timeline Section Divider */
@@ -1249,6 +1282,8 @@ body {
   margin: 20px 0;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 200;
 }
 
 .detail-btn {
@@ -1513,6 +1548,91 @@ body {
 .situation-section {
   padding: 48px 20px;
   padding-bottom: calc(80px + var(--safe-area-bottom));
+}
+
+.stage-back-cover {
+  display: flex;
+  justify-content: center;
+  padding: 32px 20px 48px;
+}
+
+.stage-back-cover .lh-enter-btn {
+  max-width: 240px;
+}
+
+/* 阶段导航按钮（居中放在正文末尾） */
+.stage-nav-btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 32px;
+  position: relative;
+  z-index: 100;
+}
+
+.stage-back-cover-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px 20px 48px;
+  position: relative;
+  z-index: 100;
+}
+
+.stage-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 280px;
+  padding: 16px 32px;
+  background: transparent;
+  border: 1px solid rgba(183, 16, 25, 0.5);
+  border-radius: 4px;
+  color: #f2eeee;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
+  touch-action: manipulation;
+  position: relative;
+  z-index: 100;
+}
+
+.stage-nav-btn:focus {
+  outline: 2px solid rgba(183, 16, 25, 0.8);
+  outline-offset: 2px;
+}
+
+.stage-nav-btn:hover {
+  background: rgba(183, 16, 25, 0.12);
+  border-color: rgba(183, 16, 25, 0.85);
+}
+
+.stage-nav-btn:active {
+  background: rgba(183, 16, 25, 0.20);
+  transform: scale(0.98);
+}
+
+.stage-nav-btn--primary {
+  background: rgba(183, 16, 25, 0.15);
+  border-color: rgba(183, 16, 25, 0.6);
+}
+
+.stage-nav-btn--primary:hover {
+  background: rgba(183, 16, 25, 0.25);
+  border-color: rgba(183, 16, 25, 0.9);
+}
+
+.stage-nav-arrow {
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.stage-nav-btn:hover .stage-nav-arrow {
+  transform: translateX(2px);
 }
 
 .situation-header {

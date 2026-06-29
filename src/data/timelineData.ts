@@ -123,7 +123,7 @@ export const timelineStages: TimelineStage[] = [
         position: 'main',
       },
       {
-        src: '/images/美国在中东军事基地阶段一8.png',
+        src: '/images/stage1-military-base.png',
         alt: '美国中东军事基地',
         caption: '美国在中东军事基地',
         position: 'left',
@@ -291,24 +291,21 @@ export const timelineStages: TimelineStage[] = [
     keywords: ['核设施', '能源威胁', '停火方案', '多线参战'],
     images: [
       {
-        src: '/images/stage-03-01.svg',
-        alt: '纳坦兹核设施',
-        caption: '美以空袭纳坦兹铀浓缩设施',
-        source: '示意图（待替换）',
+        src: '/images/stage3-funeral.png',
+        alt: '伊朗高级官员葬礼',
+        caption: '3月18日德黑兰为遇袭身亡的伊朗高级官员举行葬礼',
         position: 'main',
       },
       {
-        src: '/images/stage-03-02.svg',
-        alt: '胡塞武装',
-        caption: '胡塞武装发射导弹',
-        source: '示意图（待替换）',
+        src: '/images/stage3-arat-1.png',
+        alt: '阿拉德受损建筑',
+        caption: '3月22日阿拉德遭伊朗导弹袭击受损建筑',
         position: 'left',
       },
       {
-        src: '/images/stage-03-03.svg',
-        alt: '霍尔木兹',
-        caption: '伊朗限制霍尔木兹海峡通航',
-        source: '示意图（待替换）',
+        src: '/images/stage3-arat-2.png',
+        alt: '阿拉德受损建筑',
+        caption: '阿拉德受损建筑局部',
         position: 'right',
       },
     ],
@@ -324,6 +321,9 @@ export const timelineStages: TimelineStage[] = [
         title: '美以再次空袭纳坦兹核设施',
         description:
           '美以联合空袭伊朗纳坦兹铀浓缩设施，伊朗随即反击打击以色列南部城市迪莫纳和阿拉德。特朗普随后要求伊朗在48小时内开放霍尔木兹海峡，否则将摧毁其境内各类发电厂。',
+        image: [
+          { src: '/images/stage3-arat-3.png', alt: '阿拉德遭导弹袭击', caption: '阿拉德在伊朗导弹反击中受损' },
+        ],
       },
       {
         date: '3月24日',
@@ -342,6 +342,9 @@ export const timelineStages: TimelineStage[] = [
         title: '伊朗打击美军第五舰队',
         description:
           '伊朗发动"真实承诺-4"行动第86波攻势，精准打击美军在中东地区的部分军事设施及美军第五舰队设施，并击毁美军一架E-3"哨兵"预警机。同日，美国多地爆发反战示威抗议。',
+        image: [
+          { src: '/images/stage3-saudi-base.png', alt: '沙特基地被伊朗空袭', caption: '3月27日沙特基地被伊朗空袭' },
+        ],
       },
       {
         date: '3月31日',
@@ -508,19 +511,19 @@ export const timelineStages: TimelineStage[] = [
     keywords: ['黎巴嫩战线', '备忘录', '核查', '海峡危机'],
     images: [
       {
-        src: '/images/备忘录签署阶段六4.png',
+        src: '/images/stage6-memo-4.png',
         alt: '伊斯兰堡备忘录签署',
         caption: '美伊签署"伊斯兰堡备忘录"',
         position: 'main',
       },
       {
-        src: '/images/备忘录签署阶段六5.png',
+        src: '/images/stage6-memo-5.png',
         alt: '备忘录签署现场',
         caption: '备忘录签署现场',
         position: 'left',
       },
       {
-        src: '/images/6月1日阶段六.png',
+        src: '/images/stage6-june1.png',
         alt: '备忘录落地',
         caption: '备忘录落地与执行',
         position: 'right',
@@ -533,7 +536,7 @@ export const timelineStages: TimelineStage[] = [
         description:
           '以色列和真主党同意扩大停火至黎巴嫩全境，美方斡旋下达成"试点区"安排，但真主党隔日拒绝该协议，要求以军全面撤出黎南部。',
         image: [
-          { src: '/images/6月1日阶段六.png', alt: '黎巴嫩停火扩大', caption: '黎巴嫩停火扩大与破裂' },
+          { src: '/images/stage6-june1.png', alt: '黎巴嫩停火扩大', caption: '黎巴嫩停火扩大与破裂' },
         ],
       },
       {
@@ -551,8 +554,8 @@ export const timelineStages: TimelineStage[] = [
         description:
           '美伊在卡塔尔、巴基斯坦斡旋下收窄分歧，宣布达成停火协议最终文本。6月17日，美伊双方完成电子签署，特朗普与佩泽什基安正式签署"伊斯兰堡备忘录"（Islamabad Memorandum）。备忘录设定60天谈判窗口、3000亿美元重建基金等条款；美军解除对伊朗港口海军封锁。',
         image: [
-          { src: '/images/备忘录签署阶段六4.png', alt: '伊斯兰堡备忘录签署', caption: '美伊签署"伊斯兰堡备忘录"' },
-          { src: '/images/备忘录签署阶段六5.png', alt: '备忘录签署现场', caption: '备忘录签署现场' },
+          { src: '/images/stage6-memo-4.png', alt: '伊斯兰堡备忘录签署', caption: '美伊签署"伊斯兰堡备忘录"' },
+          { src: '/images/stage6-memo-5.png', alt: '备忘录签署现场', caption: '备忘录签署现场' },
         ],
       },
       {
