@@ -639,6 +639,16 @@ body {
   margin: 0;
 }
 
+/* Desktop: 让底部栏占满视口宽度 */
+@media (min-width: 431px) {
+  .stage-nav {
+    width: 100vw;
+    left: 0;
+    right: 0;
+    transform: none;
+  }
+}
+
 .stage-nav-inner {
   display: flex;
   align-items: center;
