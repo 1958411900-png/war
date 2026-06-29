@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import type { TimelineStage } from '../data/timelineData';
 import KeywordTags from './KeywordTags';
 import ImageGallery from './ImageGallery';
@@ -27,13 +27,6 @@ export default function StagePanel({
   onGoToSituation,
 }: StagePanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
-
-  // When this panel becomes active, scroll it into view
-  useEffect(() => {
-    if (isActive && panelRef.current) {
-      panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [isActive]);
 
   return (
     <article

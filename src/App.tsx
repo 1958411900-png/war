@@ -12,6 +12,10 @@ import DetailDrawer from './components/DetailDrawer';
 const CONTENT_STAGES = timelineStages.filter((s) => s.id !== 'cover' && s.id !== 'prewar');
 const TOTAL_STAGES = CONTENT_STAGES.length;
 
+function getStageId(index: number) {
+  return `stage-${CONTENT_STAGES[index]?.id ?? ''}`;
+}
+
 // ─── App ───────────────────────────────────────────────────────────────────
 export default function App() {
   const [appPhase, setAppPhase] = useState<'cover' | 'timeline'>('cover');
@@ -26,64 +30,54 @@ export default function App() {
     src: string; alt: string; caption?: string; source?: string;
   } | null>(null);
 
-  // Refs for imperative access (no closure risk)
-  const contentRef = useRef<HTMLDivElement>(null);
+  // Refs
   const currentIndexRef = useRef(0);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  // ─── scroll ───────────────────────────────────────────────────────────────
-  // scrollIntoView scrolls the *window*, not the h5-content container.
-  // Use container.scrollTo with offsetTop to scroll the correct element.
-  const scrollToStage = useCallback((index: number) => {
-    const stageId = `stage-${CONTENT_STAGES[index]?.id ?? ''}`;
-    const targetEl = document.getElementById(stageId);
-    const container = contentRef.current;
-    if (!container) return;
-    if (targetEl) {
-      container.scrollTo({ top: targetEl.offsetTop, behavior: 'smooth' });
-    } else {
-      container.scrollTo({ top: 0, behavior: 'smooth' });
+  // ─── scroll when currentStageIndex changes ────────────────────────────────
+  // scrollIntoView waits for React to paint the new display:block first,
+  // so offsetTop is correct. The StagePanel's own useEffect handles the scroll.
+  useEffect(() => {
+    if (appPhase !== 'timeline') return;
+    const el = document.getElementById(getStageId(currentStageIndex));
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, []);
+  }, [currentStageIndex, appPhase]);
 
-  const goToSituation = useCallback(() => {
-    const container = contentRef.current;
-    const el = document.getElementById('situation-section');
-    if (el && container) {
-      container.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
-    }
-  }, []);
-
-  // ─── navigation ───────────────────────────────────────────────────────────
+  // ─── navigation (state only — scroll is handled by useEffect above) ────────
   const enterTimeline = useCallback(() => {
     setAppPhase('timeline');
     setCurrentStageIndex(0);
     currentIndexRef.current = 0;
-    requestAnimationFrame(() => scrollToStage(0));
-  }, [scrollToStage]);
+  }, []);
 
   const goToPrevStage = useCallback(() => {
     const next = Math.max(0, currentIndexRef.current - 1);
     currentIndexRef.current = next;
     setCurrentStageIndex(next);
-    scrollToStage(next);
-  }, [scrollToStage]);
+  }, []);
 
   const goToNextStage = useCallback(() => {
     const next = Math.min(TOTAL_STAGES - 1, currentIndexRef.current + 1);
     currentIndexRef.current = next;
     setCurrentStageIndex(next);
-    scrollToStage(next);
-  }, [scrollToStage]);
+  }, []);
 
   const goToStage = useCallback((index: number) => {
     const clamped = Math.max(0, Math.min(TOTAL_STAGES - 1, index));
     currentIndexRef.current = clamped;
     setCurrentStageIndex(clamped);
     setShowDirectory(false);
-    scrollToStage(clamped);
-  }, [scrollToStage]);
+  }, []);
+
+  const goToSituation = useCallback(() => {
+    const el = document.getElementById('situation-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, []);
 
   // ─── touch ────────────────────────────────────────────────────────────────
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -174,7 +168,6 @@ export default function App() {
             />
 
             <div
-              ref={contentRef}
               className="h5-content"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
