@@ -9,7 +9,6 @@ interface StagePanelProps {
   stage: TimelineStage;
   index: number;
   isActive: boolean;
-  slideDirection: 'left' | 'right' | null;
   onOpenDetail: () => void;
   onOpenImage: (src: string, alt: string, caption?: string, source?: string) => void;
   isLast: boolean;
@@ -21,7 +20,6 @@ export default function StagePanel({
   stage,
   index,
   isActive,
-  slideDirection,
   onOpenDetail,
   onOpenImage,
   isLast,
@@ -30,29 +28,17 @@ export default function StagePanel({
 }: StagePanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
+  // When this panel becomes active, scroll it into view
   useEffect(() => {
     if (isActive && panelRef.current) {
       panelRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [isActive]);
 
-  let panelClass = 'stage-panel';
-  if (isActive) {
-    panelClass += ' active';
-  } else if (slideDirection === 'left') {
-    panelClass += ' exit-left';
-  } else if (slideDirection === 'right') {
-    panelClass += ' exit-right';
-  }
-
-  const handleBtnClick = () => {
-    onGoToSituation();
-  };
-
   return (
     <article
       ref={panelRef}
-      className={panelClass}
+      className={`stage-panel${isActive ? ' active' : ''}`}
       aria-label={`Stage ${index + 1}: ${stage.title}`}
       id={`stage-${stage.id}`}
     >
@@ -80,15 +66,16 @@ export default function StagePanel({
 
       {isLast && <SituationSection />}
 
+      {/* 非最后一阶段：显示 NEXT 按钮 */}
       {!isLast && (
         <div className="detail-btn-wrapper">
           <button
             className="detail-btn"
-            onClick={handleBtnClick}
-            aria-label="View Current Situation"
+            onClick={onGoToNext}
+            aria-label="进入下一阶段"
           >
-            <span>查看总体局势</span>
-            <span className="detail-btn-icon">
+            <span>下一阶段</span>
+            <span className="detail-btn-icon" aria-hidden="true">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 18l6-6-6-6" />
               </svg>
