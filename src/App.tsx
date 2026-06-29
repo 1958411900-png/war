@@ -33,17 +33,29 @@ export default function App() {
   const touchStartY = useRef(0);
 
   // ─── scroll ───────────────────────────────────────────────────────────────
+  // scrollIntoView scrolls the *window*, not the h5-content container.
+  // Use container.scrollTo with offsetTop to scroll the correct element.
   const scrollToStage = useCallback((index: number) => {
     const stageId = `stage-${CONTENT_STAGES[index]?.id ?? ''}`;
-    const el = document.getElementById(stageId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const targetEl = document.getElementById(stageId);
+    const container = contentRef.current;
+    if (!container) return;
+    if (targetEl) {
+      container.scrollTo({ top: targetEl.offsetTop, behavior: 'smooth' });
     } else {
-      contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+      container.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, []);
 
-  // ─── navigation (ref-based, no closure issues) ────────────────────────────
+  const goToSituation = useCallback(() => {
+    const container = contentRef.current;
+    const el = document.getElementById('situation-section');
+    if (el && container) {
+      container.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+    }
+  }, []);
+
+  // ─── navigation ───────────────────────────────────────────────────────────
   const enterTimeline = useCallback(() => {
     setAppPhase('timeline');
     setCurrentStageIndex(0);
@@ -72,19 +84,6 @@ export default function App() {
     setShowDirectory(false);
     scrollToStage(clamped);
   }, [scrollToStage]);
-
-  const goToSituation = useCallback(() => {
-    const el = document.getElementById('situation-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      const lastId = `stage-${CONTENT_STAGES[TOTAL_STAGES - 1]?.id ?? ''}`;
-      const lastEl = document.getElementById(lastId);
-      if (lastEl) {
-        lastEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }
-    }
-  }, []);
 
   // ─── touch ────────────────────────────────────────────────────────────────
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
