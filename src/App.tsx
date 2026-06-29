@@ -12,14 +12,8 @@ import DetailDrawer from './components/DetailDrawer';
 const CONTENT_STAGES = timelineStages.filter((s) => s.id !== 'cover' && s.id !== 'prewar');
 const TOTAL_STAGES = CONTENT_STAGES.length;
 
-// ─── helpers ───────────────────────────────────────────────────────────────
-function getStageId(index: number) {
-  return `stage-${CONTENT_STAGES[index]?.id ?? ''}`;
-}
-
 // ─── App ───────────────────────────────────────────────────────────────────
 export default function App() {
-  // appPhase: 'cover' | 'timeline'
   const [appPhase, setAppPhase] = useState<'cover' | 'timeline'>('cover');
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
 
@@ -32,16 +26,16 @@ export default function App() {
     src: string; alt: string; caption?: string; source?: string;
   } | null>(null);
 
-  // Refs
+  // Refs for imperative access (no closure risk)
   const contentRef = useRef<HTMLDivElement>(null);
+  const currentIndexRef = useRef(0);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
-  const touchStartTime = useRef(0);
-  const inTimeline = appPhase === 'timeline';
 
-  // ─── scroll helpers ──────────────────────────────────────────────────────
+  // ─── scroll ───────────────────────────────────────────────────────────────
   const scrollToStage = useCallback((index: number) => {
-    const el = document.getElementById(getStageId(index));
+    const stageId = `stage-${CONTENT_STAGES[index]?.id ?? ''}`;
+    const el = document.getElementById(stageId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
@@ -49,86 +43,74 @@ export default function App() {
     }
   }, []);
 
-  const scrollToSituation = useCallback(() => {
+  // ─── navigation (ref-based, no closure issues) ────────────────────────────
+  const enterTimeline = useCallback(() => {
+    setAppPhase('timeline');
+    setCurrentStageIndex(0);
+    currentIndexRef.current = 0;
+    requestAnimationFrame(() => scrollToStage(0));
+  }, [scrollToStage]);
+
+  const goToPrevStage = useCallback(() => {
+    const next = Math.max(0, currentIndexRef.current - 1);
+    currentIndexRef.current = next;
+    setCurrentStageIndex(next);
+    scrollToStage(next);
+  }, [scrollToStage]);
+
+  const goToNextStage = useCallback(() => {
+    const next = Math.min(TOTAL_STAGES - 1, currentIndexRef.current + 1);
+    currentIndexRef.current = next;
+    setCurrentStageIndex(next);
+    scrollToStage(next);
+  }, [scrollToStage]);
+
+  const goToStage = useCallback((index: number) => {
+    const clamped = Math.max(0, Math.min(TOTAL_STAGES - 1, index));
+    currentIndexRef.current = clamped;
+    setCurrentStageIndex(clamped);
+    setShowDirectory(false);
+    scrollToStage(clamped);
+  }, [scrollToStage]);
+
+  const goToSituation = useCallback(() => {
     const el = document.getElementById('situation-section');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // Situation section lives inside last panel — scroll to last panel bottom
-      const lastEl = document.getElementById(getStageId(TOTAL_STAGES - 1));
+      const lastId = `stage-${CONTENT_STAGES[TOTAL_STAGES - 1]?.id ?? ''}`;
+      const lastEl = document.getElementById(lastId);
       if (lastEl) {
         lastEl.scrollIntoView({ behavior: 'smooth', block: 'end' });
       }
     }
   }, []);
 
-  // ─── navigation ──────────────────────────────────────────────────────────
-  const enterTimeline = useCallback(() => {
-    setAppPhase('timeline');
-    setCurrentStageIndex(0);
-    setTimeout(() => scrollToStage(0), 80);
-  }, [scrollToStage]);
-
-  const goToPrevStage = useCallback(() => {
-    setCurrentStageIndex((prev) => {
-      const next = Math.max(0, prev - 1);
-      setTimeout(() => scrollToStage(next), 60);
-      return next;
-    });
-  }, [scrollToStage]);
-
-  const goToNextStage = useCallback(() => {
-    setCurrentStageIndex((prev) => {
-      const next = Math.min(TOTAL_STAGES - 1, prev + 1);
-      setTimeout(() => scrollToStage(next), 60);
-      return next;
-    });
-  }, [scrollToStage]);
-
-  const goToStage = useCallback((index: number) => {
-    const clamped = Math.max(0, Math.min(TOTAL_STAGES - 1, index));
-    setCurrentStageIndex(clamped);
-    setShowDirectory(false);
-    setTimeout(() => scrollToStage(clamped), 60);
-  }, [scrollToStage]);
-
-  // ─── touch / swipe ───────────────────────────────────────────────────────
+  // ─── touch ────────────────────────────────────────────────────────────────
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
-    touchStartTime.current = Date.now();
-  }, []);
-
-  const handleTouchMove = useCallback((_e: React.TouchEvent) => {
-    // only record start; end decides
   }, []);
 
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
     const dy = e.changedTouches[0].clientY - touchStartY.current;
-    const dt = Date.now() - touchStartTime.current;
 
-    if (Math.abs(dy) > Math.abs(dx)) {
-      // 封面下滑进入时间线
-      if (dy > 50 && dt < 500 && !inTimeline) {
-        enterTimeline();
-        return;
-      }
-      // 内容区上下滚动暂不拦截
+    if (appPhase === 'cover' && dy > 50 && Math.abs(dy) > Math.abs(dx)) {
+      enterTimeline();
       return;
     }
 
-    // 水平滑动
-    if (Math.abs(dx) > 50 && dt < 500) {
+    if (Math.abs(dx) > 50) {
       if (dx < 0) {
         goToNextStage();
       } else {
         goToPrevStage();
       }
     }
-  }, [inTimeline, enterTimeline, goToNextStage, goToPrevStage]);
+  }, [appPhase, enterTimeline, goToNextStage, goToPrevStage]);
 
-  // ─── detail / image overlays ─────────────────────────────────────────────
+  // ─── overlays ──────────────────────────────────────────────────────────────
   const handleOpenDetail = useCallback((stageIndex: number) => {
     setDetailStageIndex(stageIndex);
     setShowDetailDrawer(true);
@@ -154,10 +136,10 @@ export default function App() {
     setTimeout(() => setPreviewImage(null), 300);
   }, []);
 
-  // ─── keyboard navigation ─────────────────────────────────────────────────
+  // ─── keyboard ─────────────────────────────────────────────────────────────
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (showDetailDrawer || showImagePreview || !inTimeline) return;
+      if (showDetailDrawer || showImagePreview || appPhase !== 'timeline') return;
       if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         e.preventDefault();
         goToPrevStage();
@@ -168,7 +150,7 @@ export default function App() {
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [showDetailDrawer, showImagePreview, inTimeline, goToPrevStage, goToNextStage]);
+  }, [showDetailDrawer, showImagePreview, appPhase, goToPrevStage, goToNextStage]);
 
   const currentStage = CONTENT_STAGES[currentStageIndex];
   const stageTitle = currentStage?.title ?? '';
@@ -196,7 +178,6 @@ export default function App() {
               ref={contentRef}
               className="h5-content"
               onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
               {CONTENT_STAGES.map((stage, index) => (
@@ -209,7 +190,7 @@ export default function App() {
                   onOpenImage={handleOpenImage}
                   isLast={index === TOTAL_STAGES - 1}
                   onGoToNext={goToNextStage}
-                  onGoToSituation={scrollToSituation}
+                  onGoToSituation={goToSituation}
                 />
               ))}
             </div>
