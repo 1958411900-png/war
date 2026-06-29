@@ -135,6 +135,12 @@ export const timelineStages: TimelineStage[] = [
         title: '美以联合空袭',
         description:
           '美国（"史诗之怒行动"）与以色列（"怒吼雄狮行动"）发动联合空袭，伊朗最高领袖阿里·哈梅内伊在德黑兰被刺杀身亡，数十名伊朗高级官员遇难，包括哈梅内伊女儿在内的5名至亲在本轮袭击中丧生。',
+      },
+      {
+        date: '2月28日',
+        title: '米纳卜女校惨案',
+        description:
+          '伊朗米纳卜市一所女校遭"战斧"导弹袭击，死亡人数达175人，多为儿童。',
         image: [
           { src: '/images/2月28日阶段一3.png', alt: '美以联合空袭行动', caption: '美以联合空袭行动' },
           { src: '/images/3月1日阶段一4.png', alt: '哈梅内伊遇袭', caption: '哈梅内伊遇袭现场' },
@@ -142,17 +148,11 @@ export const timelineStages: TimelineStage[] = [
       },
       {
         date: '2月28日',
-        title: '米纳卜女校惨案',
-        description:
-          '伊朗米纳卜市一所女校遭"战斧"导弹袭击，死亡人数达175人，多为儿童。',
-      },
-      {
-        date: '2月28日',
         title: '伊朗发动"真实承诺-4"反击',
         description:
-          '伊朗伊斯兰革命卫队发起"真实承诺-4"行动，向中东地区美军基地和以色列境内目标发射导弹与无人机，战争正式爆发。',
+          '伊朗伊斯兰革命卫队发起"真实承诺-4"行动，向中东地区美军基地和以色列境内目标发射导弹与无人机。',
         image: [
-          { src: '/images/3月3日阶段一6.png', alt: '伊朗反击行动', caption: '伊朗反击行动' },
+          { src: '/images/ 伊朗伊斯兰革命卫队发起"真实承诺-4"行动，向中东地区美军基地和以色列境内目标发射导弹与无人机.png', alt: '伊朗反击行动', caption: '伊朗发动"真实承诺-4"反击' },
         ],
       },
       {
@@ -404,8 +404,7 @@ export const timelineStages: TimelineStage[] = [
         description:
           '美伊（含以色列）达成为期两周的停火，巴基斯坦总理夏巴兹宣布，伊朗、美国及双方盟友同意立即在包括黎巴嫩在内的所有地区停火。伊朗宣布将于10日在伊斯兰堡与美国展开为期两周的谈判。',
         image: [
-          { src: '/images/4月7日阶段二2.png', alt: '停火达成', caption: '两周停火达成' },
-          { src: '/images/4月2日阶段二1.png', alt: '停火谈判', caption: '美伊停火谈判进程' },
+          { src: '/images/伊朗伊斯兰议会议长卡利巴夫（资料图）.png', alt: '停火达成', caption: '伊朗伊斯兰议会议长卡利巴夫' },
         ],
       },
       {
@@ -545,7 +544,7 @@ export const timelineStages: TimelineStage[] = [
         description:
           '以军空袭贝鲁特南部，引发伊以自停火以来首次直接交火。伊朗以"美方海军封锁+以色列对黎巴嫩的攻击"为由，向以色列发射多波弹道导弹——这是4月停火生效以来伊朗首次直接对以色列开火。特朗普因谈判停滞下令对伊朗实施新一轮空袭；伊朗军方再次宣布关闭霍尔木兹海峡。',
         image: [
-          { src: '/images/6月7日阶段六2.png', alt: '伊朗弹道导弹发射', caption: '伊朗向以色列发射弹道导弹' },
+          { src: '/images/6月7日阶段六2.png', alt: '伊朗弹道导弹发射', caption: '以军空袭贝鲁特南部' },
         ],
       },
       {
@@ -564,7 +563,7 @@ export const timelineStages: TimelineStage[] = [
         description:
           '以色列与真主党经多方斡旋重新达成停火，但数日内再度破裂。原定瑞士落实谈判因黎巴嫩空袭被迫推迟。伊朗以"以色列违反黎巴嫩停火协议"为由再次宣布关闭霍尔木兹海峡。',
         image: [
-          { src: '/images/6月8日阶段六3.png', alt: '黎巴嫩停火再次破裂', caption: '黎巴嫩停火再次破裂' },
+          { src: '/images/6月20日以色列空袭后，Shweikin镇和黎巴嫩南部的Ali al-Tahir山区冒出烟雾。.jpg', alt: '黎巴嫩停火再次破裂', caption: '6月20日以色列空袭后，Shweikin镇和黎巴嫩南部的Ali al-Tahir山区冒出烟雾' },
         ],
       },
       {
