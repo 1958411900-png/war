@@ -14,6 +14,7 @@ interface StagePanelProps {
   onOpenImage: (src: string, alt: string, caption?: string, source?: string) => void;
   isLast: boolean;
   onGoToNext: () => void;
+  onGoToSituation: () => void;
 }
 
 export default function StagePanel({
@@ -25,6 +26,7 @@ export default function StagePanel({
   onOpenImage,
   isLast,
   onGoToNext,
+  onGoToSituation,
 }: StagePanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +46,7 @@ export default function StagePanel({
   }
 
   const handleBtnClick = () => {
-    onGoToNext();
+    onGoToSituation();
   };
 
   return (

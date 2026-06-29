@@ -149,6 +149,13 @@ export default function App() {
     contentRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const handleGoToSituation = useCallback(() => {
+    const el = document.getElementById('situation-section');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, []);
+
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -197,6 +204,7 @@ export default function App() {
                   onOpenImage={handleOpenImage}
                   isLast={index === CONTENT_STAGES.length - 1}
                   onGoToNext={handleNextStage}
+                  onGoToSituation={handleGoToSituation}
                 />
               ))}
             </div>
@@ -207,14 +215,16 @@ export default function App() {
                 setTimeout(handleEnterTimeline, 100);
               }}
             />
-            <StageNav
-              currentIndex={currentStageIndex}
-              total={CONTENT_STAGES.length}
-              stageTitle={stageTitle}
-              onPrev={handlePrevStage}
-              onNext={handleNextStage}
-              onOpenDirectory={() => setShowDirectory(true)}
-            />
+            {!showCover && (
+              <StageNav
+                currentIndex={currentStageIndex}
+                total={CONTENT_STAGES.length}
+                stageTitle={stageTitle}
+                onPrev={handlePrevStage}
+                onNext={handleNextStage}
+                onOpenDirectory={() => setShowDirectory(true)}
+              />
+            )}
             <StageDirectory
               isOpen={showDirectory}
               stages={CONTENT_STAGES}

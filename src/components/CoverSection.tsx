@@ -82,6 +82,13 @@ export default function CoverSection({ onEnter }: CoverSectionProps) {
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (!touchRef.current) return;
     const dx = e.changedTouches[0].clientX - touchRef.current.startX;
+    const dy = e.changedTouches[0].clientY - touchRef.current.startY;
+    // Swipe down to enter
+    if (dy > SWIPE_THRESHOLD && Math.abs(dy) > Math.abs(dx)) {
+      onEnter();
+      touchRef.current = null;
+      return;
+    }
     if (Math.abs(dx) > SWIPE_THRESHOLD) {
       dx < 0 ? goTo(activeIndex + 1, 'left') : goTo(activeIndex - 1, 'right');
     }
